@@ -35,10 +35,6 @@ For the web app:
     In terminal: 
     npm start
 
-For easy access:
-
-    https://snack.expo.io/@dancantheman/htc
-
 ## Contributing
 ---
 
