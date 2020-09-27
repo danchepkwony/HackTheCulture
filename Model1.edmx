@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Communication_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Communication_Database.dbo.Interaction_Repo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Interaction_Repo">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Interact_User" />
+            <PropertyRef Name="Interaction_Date" />
+            <PropertyRef Name="Interaction_Start_Time" />
+          </Key>
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Interact_User" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Interaction_Date" Type="date" Nullable="false" />
+          <Property Name="Interaction_Start_Time" Type="datetime" Nullable="false" />
+          <Property Name="Interaction_Stop_Time" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Communication_Database.dbo.Message_Temp_Repo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Message_Temp_Repo">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Message_Text_String" />
+          </Key>
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Message_Text_String" Type="varchar(max)" Nullable="false" />
+          <Property Name="Time_Stamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="User_Repo">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Last_NAme" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Communication_Key" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Addition_Date" Type="datetime" Nullable="false" />
+          <Property Name="User_Passord" Type="varchar" MaxLength="50" />
+          <Property Name="User_Profile_Pic" Type="varchar" MaxLength="90" />
+        </EntityType>
+        <Function Name="End_Convo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="User_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="New_Message" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Uer_ID" Type="int" Mode="In" />
+          <Parameter Name="Message_Text" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Read_Message" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="User_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Register_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="First_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Last_Name" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Communication_DatabaseModelStoreContainer">
+          <EntitySet Name="User_Repo" EntityType="Self.User_Repo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Interaction_Repo" EntityType="Self.Interaction_Repo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Interaction_Repo].[User_ID] AS [User_ID], 
+    [Interaction_Repo].[Interact_User] AS [Interact_User], 
+    [Interaction_Repo].[Interaction_Date] AS [Interaction_Date], 
+    [Interaction_Repo].[Interaction_Start_Time] AS [Interaction_Start_Time], 
+    [Interaction_Repo].[Interaction_Stop_Time] AS [Interaction_Stop_Time]
+    FROM [dbo].[Interaction_Repo] AS [Interaction_Repo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Message_Temp_Repo" EntityType="Self.Message_Temp_Repo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Message_Temp_Repo].[User_ID] AS [User_ID], 
+    [Message_Temp_Repo].[Message_Text_String] AS [Message_Text_String], 
+    [Message_Temp_Repo].[Time_Stamp] AS [Time_Stamp]
+    FROM [dbo].[Message_Temp_Repo] AS [Message_Temp_Repo]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Communication_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="User_Repo">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_NAme" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Communication_Key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Addition_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="User_Passord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Profile_Pic" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Interaction_Repo">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Interact_User" />
+            <PropertyRef Name="Interaction_Date" />
+            <PropertyRef Name="Interaction_Start_Time" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Interact_User" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Interaction_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Interaction_Start_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Interaction_Stop_Time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Message_Temp_Repo">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Message_Text_String" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Message_Text_String" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Time_Stamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="Communication_DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="User_Repo" EntityType="Self.User_Repo" />
+          <EntitySet Name="Interaction_Repo" EntityType="Self.Interaction_Repo" />
+          <EntitySet Name="Message_Temp_Repo" EntityType="Self.Message_Temp_Repo" />
+          <FunctionImport Name="End_Convo">
+            <Parameter Name="User_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="New_Message">
+            <Parameter Name="Uer_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Message_Text" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Read_Message" ReturnType="Collection(Communication_DatabaseModel.Read_Message_Result)">
+            <Parameter Name="User_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Register_User" ReturnType="Collection(Communication_DatabaseModel.Register_User_Result)">
+            <Parameter Name="First_Name" Mode="In" Type="String" />
+            <Parameter Name="Last_Name" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Read_Message_Result">
+          <Property Type="Int32" Name="User_ID" Nullable="false" />
+          <Property Type="String" Name="Message_Text_String" Nullable="false" />
+          <Property Type="DateTime" Name="Time_Stamp" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Register_User_Result">
+          <Property Type="Int32" Name="User_ID" Nullable="true" />
+          <Property Type="String" Name="Pass_Key" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Communication_DatabaseModelStoreContainer" CdmEntityContainer="Communication_DatabaseEntities">
+          <EntitySetMapping Name="User_Repo">
+            <EntityTypeMapping TypeName="Communication_DatabaseModel.User_Repo">
+              <MappingFragment StoreEntitySet="User_Repo">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_NAme" ColumnName="Last_NAme" />
+                <ScalarProperty Name="Communication_Key" ColumnName="Communication_Key" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Addition_Date" ColumnName="Addition_Date" />
+                <ScalarProperty Name="User_Passord" ColumnName="User_Passord" />
+                <ScalarProperty Name="User_Profile_Pic" ColumnName="User_Profile_Pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Interaction_Repo">
+            <EntityTypeMapping TypeName="Communication_DatabaseModel.Interaction_Repo">
+              <MappingFragment StoreEntitySet="Interaction_Repo">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Interact_User" ColumnName="Interact_User" />
+                <ScalarProperty Name="Interaction_Date" ColumnName="Interaction_Date" />
+                <ScalarProperty Name="Interaction_Start_Time" ColumnName="Interaction_Start_Time" />
+                <ScalarProperty Name="Interaction_Stop_Time" ColumnName="Interaction_Stop_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message_Temp_Repo">
+            <EntityTypeMapping TypeName="Communication_DatabaseModel.Message_Temp_Repo">
+              <MappingFragment StoreEntitySet="Message_Temp_Repo">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Message_Text_String" ColumnName="Message_Text_String" />
+                <ScalarProperty Name="Time_Stamp" ColumnName="Time_Stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="End_Convo" FunctionName="Communication_DatabaseModel.Store.End_Convo" />
+          <FunctionImportMapping FunctionImportName="New_Message" FunctionName="Communication_DatabaseModel.Store.New_Message" />
+          <FunctionImportMapping FunctionImportName="Read_Message" FunctionName="Communication_DatabaseModel.Store.Read_Message">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Communication_DatabaseModel.Read_Message_Result">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Message_Text_String" ColumnName="Message_Text_String" />
+                <ScalarProperty Name="Time_Stamp" ColumnName="Time_Stamp" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Register_User" FunctionName="Communication_DatabaseModel.Store.Register_User">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Communication_DatabaseModel.Register_User_Result">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Pass_Key" ColumnName="Pass_Key" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,16 @@
+﻿<Window x:Class="Comm_App_Beta.Outside_User"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Comm_App_Beta"
+        mc:Ignorable="d"
+        Title="Outside_User" Height="514.8" Width="800">
+    <Grid>
+        <TextBlock x:Name="Message_Box_One" HorizontalAlignment="Left" Margin="48,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="152" Width="650"/>
+        <Button x:Name="Read_Mess" Click="Read_Mess_Click" Content="Read Messages" HorizontalAlignment="Left" Margin="48,233,0,0" VerticalAlignment="Top" Width="148" Height="39"/>
+        <Button x:Name="Sen_Message" Click="Sen_Message_Click" Content="Send Messge" HorizontalAlignment="Left" Margin="550,233,0,0" VerticalAlignment="Top" Width="148" Height="39"/>
+        <TextBox x:Name="Text_Outbound" HorizontalAlignment="Left" Height="132" Margin="48,323,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="650"/>
+
+    </Grid>
+</Window>
