@@ -4,7 +4,7 @@
 ##Description
 ---
 
-This is the prototype for Communicaid, a solution for Hack The Culture.
+This is the prototype for Communicaid, a solution for Hack The Culture. It contains the navigation and user interface for the app and foundational functionality for the web app. 
 
 ##Prerequisites
 ---
@@ -35,12 +35,11 @@ For the web app:
     In terminal: 
     npm start
 
+For easy access:
+
+    https://snack.expo.io/@dancantheman/htc
+
 ##Contributing
 ---
 
 Source Code: https://github.com/danchepkwony/HackTheCulture
-
-##Contact
----
-
-dan.k.chepkwony@gmail.com

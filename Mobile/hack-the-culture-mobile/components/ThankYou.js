@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, Button, Image } from 'react-native';
+import logo from '../assets/communicaid.png';
 
 function ThankYou(props){
   return(
+    <View style={styles.background}>
+    <Image style={styles.logo} source={logo} />
     <View style={styles.container}>
     <Text style={styles.thankyou}> Thank you! </Text>
     <Text style={styles.text}> Your profile has been saved. You will receive an email with further instructions on how to receive your QR band. In the meantime, you can use the QR code on the home screen! </Text>
@@ -10,18 +13,25 @@ function ThankYou(props){
         <Button color='#9a9a9a' title="Done" onPress={() => props.navigation.navigate("HomeScreen")}/>
       </View>
     </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    height: '100vh',
+    backgroundColor: 'white'
+  },
+  logo: {
+    height: '17.5%',
+    width: '100%'
+  },
   container: {
     flex: 1,
     flexDirection: "column",
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 20,
     backgroundColor: '#ffffff',
-    padding: 8,
   },
   thankyou: {
     width: '80%',
@@ -35,7 +45,7 @@ const styles = StyleSheet.create({
     width: '80%',
     textAlign: 'center',
     color: '#000000',
-    paddingBottom: 10,
+    paddingBottom: 30,
     fontFamily: 'arial',
     fontSize: 20,
   },

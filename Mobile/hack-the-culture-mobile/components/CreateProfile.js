@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { View, StyleSheet, Text, ScrollView, Image, TextInput, Button, Dimensions  } from 'react-native';
+import { View, StyleSheet, Text, Image, TextInput, Button  } from 'react-native';
+import logo from '../assets/communicaid.png';
 
 function CreateProfile(props) {
   const [firstName, setFirstName] = useState([]);
@@ -12,15 +13,16 @@ function CreateProfile(props) {
   }
 
   return (
-    <ScrollView style={styles.container}>
-      
-          <Text style={styles.text}> First Name </Text>
+    <View style={styles.background}>
+      <Image style={styles.logo} source={logo} />
+      <View style={styles.container}>
+          <Text style={styles.text}> Enter your first name: </Text>
           <TextInput style={styles.input} value={firstName} onChangeText={firstName => setFirstName(firstName)} />
 
-          <Text style={styles.text}> Last Name </Text>
+          <Text style={styles.text}> Enter your last name: </Text>
           <TextInput style={styles.input} value={lastName} onChangeText={lastName => setFirstName(lastName)}  />
 
-          <Text style={styles.text}> Email </Text>
+          <Text style={styles.text}> Enter your email address: </Text>
           <TextInput style={styles.input} value={lastName} onChangeText={lastName => setFirstName(lastName)}  />
 
           <Text style={styles.errorText} >
@@ -30,20 +32,22 @@ function CreateProfile(props) {
           <View style={styles.button}>
             <Button color="#9a9a9a" title="Save" onPress={CreateProfileAndReroute}/>
           </View>
-      </ScrollView>
+          </View>
+      </View>
     );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
+  background: {
+    height: '100vh',
+    backgroundColor: 'white',
+    display: 'flex',
     justifyContent: 'center',
-    backgroundColor: '#ffffff',
-    paddingTop: 40,
-    padding: 36,
-    height: Dimensions.get('window').height,
-    width:  Dimensions.get('window').width,
+    alignItems: 'center',
+  },
+  logo: {
+    height: '17.5%',
+    width: '100%'
   },
   text: {
     width: '100%',
@@ -52,6 +56,14 @@ const styles = StyleSheet.create({
     paddingBottom: 7.5,
     fontFamily: 'arial',
     fontSize: 12,
+  },
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    width: '80%'
   },
   input: {
     width: '100%',
