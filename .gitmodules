@@ -1,0 +1,4 @@
+[submodule "HackTheCultureWeb"]
+	path = HackTheCultureWeb
+	url = https://github.com/danchepkwony/HackTheCultureWeb
+	branch = master
