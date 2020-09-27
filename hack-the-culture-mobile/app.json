@@ -1,0 +1,12 @@
+{
+  "name": "hack-the-culture-mobile",
+  "displayName": "hack-the-culture-mobile",
+  "expo": {
+    "name": "hack-the-culture-mobile",
+    "slug": "hack-the-culture-mobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
